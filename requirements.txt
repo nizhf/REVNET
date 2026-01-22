@@ -1,0 +1,32 @@
+# PyTorch
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.9.1+cu128
+torchvision==0.24.1+cu128
+
+# Main dependencies
+argparse
+easydict
+h5py
+imageio
+jupyter
+matplotlib
+ninja
+numpy
+open3d
+opencv-python
+pandas
+plotly
+pyyaml
+scikit-image
+scikit-learn
+scipy
+tensorboard
+tensorboardX
+termcolor
+tqdm
+transforms3d
+usort
+
+# Optional: code formatting and linting
+black
+flake8
