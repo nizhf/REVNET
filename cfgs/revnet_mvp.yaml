@@ -1,0 +1,142 @@
+task: completion
+
+model:
+  NAME: REVNET
+  num_fine: 8192
+  num_coarse: 256
+  num_anchors: 128
+  d_model: 128
+  vn_cfg:
+    share_nonlinearity: False
+    negative_slope: 0.2
+    relu_in: False
+  pos_enc_cfg:
+    k: 8
+    ff_cfg:
+      layers: [] # first (1) and last (d_model) layer set by model constructor
+      layers_type: [relu]
+      data_dim: [5] # don't care when no batchnorm
+      bias: normalize
+    pooling: mean
+  anchor_mode: resmlp
+  anchor_cfg:
+    layers: [16, 32, 64, 128, 128]
+    blocks: [2, 3, 2]
+    k: [16, 16, 8, 8]
+    pooling: mean
+    downsample_mode: xyz
+    fps_ext: False
+    grouper: knn
+    grouper_cfg: { mode: xyz }
+    invres_expansion: 2
+    bias: normalize
+    norm: layer_zca
+  missing_gen_cfg:
+    up_dim: 1024
+    up_cfg:
+      layers: [512] # first (anchor_dim) and last (up_dim) layer set by model constructor
+      layers_type: [relu, relu]
+      data_dim: [4, 4] # don't care when no batchnorm
+      bias: normalize
+    global_pooling: mean
+    query_mlp_cfg:
+      layers: [512] # first (up_dim+xyz_conv_dim) and last (d_model) layer set by model constructor
+      layers_type: [relu, relu]
+      data_dim: [4, 4] # don't care when no batchnorm
+      bias: normalize
+    coor_gen: rotinv
+    coor_gen_cfg:
+      coarse_dim1: 2048
+      coarse_dim2: 1024
+      normalize_frame: True
+      norm:
+  transformer_in_proj_cfg:
+    layers: [] # first (dgcnn_dim) and last (d_model) layer set by model constructor
+    layers_type: [relu]
+    data_dim: [4, 4] # don't care when no batchnorm
+    bias: normalize
+  transformer_cfg:
+    num_sa_layer: 4
+    num_ca_layer: 6
+    attn_cfg:
+      nhead: 4
+      dim_feedforward: 128
+      bias_feedforward: normalize
+      use_qkproj: True
+      attn_mode: sub
+      head_mode: separate
+      fwd_mode: channel
+      norm_mode: layer_zca
+      norm_affine: True
+      dropout: 0.0
+      norm_first: True
+  fine_cfg:
+    decoder_dim: 256
+    up_cfg:
+      layers: [512, 1024] # first layer (d_model) set by model constructor
+      layers_type: [relu, relu]
+      data_dim: [4, 4] # don't care when no batchnorm
+      bias: normalize
+    global_pooling: mean
+    decoder_type: simplefc
+    decoder_cfg:
+      norm:
+      refine_cfg:
+        hidden_dim: 512
+
+data:
+  train:
+    dataset_cfg: cfgs/datasets/mvp.yaml
+    split: train
+    augment:
+      # RandomRotation: {axes: xyz}
+  val:
+    dataset_cfg: cfgs/datasets/mvp.yaml
+    split: test
+    subset: 0.1
+    augment:
+      # RandomRotation: {axes: xyz}
+  test:
+    dataset_cfg: cfgs/datasets/mvp.yaml
+    split: test
+    augment:
+      RandomRotation: { axes: xyz }
+  vis:
+    dataset_cfg: cfgs/datasets/mvp.yaml
+    split: test
+
+loss:
+  loss_coarse:
+    NAME: ChamferDistanceLoss
+    mode: cd_p
+    single_directional: False
+  loss_fine:
+    NAME: ChamferDistanceLoss
+    mode: cd_p
+    single_directional: False
+
+loss_weight_scheduler:
+  loss_coarse:
+    NAME: ConstantWeight
+    values: 1.0
+  loss_fine:
+    NAME: ConstantWeight
+    values: 1.0
+
+optimizer:
+  NAME: AdamW
+  lr: 0.0005
+  weight_decay: 0.0005
+clip_grad: 0.1
+scheduler:
+  NAME: ExponentialLinearWarmupLR
+  warmup: 5
+  warmup_init_decay: 0.1
+  decay_step: 20
+  lr_decay: 0.7
+  lowest_decay: 0.02
+
+total_bs_train: 32
+total_bs_val: 32
+total_bs_test: 32
+max_epoch: 100

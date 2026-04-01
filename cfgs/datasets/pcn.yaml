@@ -1,0 +1,6 @@
+dataset:
+  NAME: PCNDataset
+  path: "data/PCN"
+  npoints_input: 2048
+batch_sampler:
+collate_fn:

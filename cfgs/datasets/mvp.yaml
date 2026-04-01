@@ -1,0 +1,7 @@
+dataset:
+  NAME: MVPDataset
+  path: "data/MVP"
+  novel_input: False
+  novel_input_only: False
+batch_sampler:
+collate_fn:

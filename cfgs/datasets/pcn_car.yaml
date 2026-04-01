@@ -1,0 +1,7 @@
+dataset:
+  NAME: PCNDataset
+  path: "data/PCN"
+  classes: ["car"]
+  npoints_input: 2048
+batch_sampler:
+collate_fn:

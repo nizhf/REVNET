@@ -1,0 +1,6 @@
+dataset:
+  NAME: KITTIDataset
+  path: "data/KITTI"
+  npoints_input: 2048
+batch_sampler:
+collate_fn:
