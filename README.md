@@ -2,6 +2,7 @@
 This repository contains PyTorch implementation for **REVNET: Rotation-Equivariant Point Cloud Completion via Vector Neuron Anchor Transformer**.
 
 <a href="https://arxiv.org/abs/2601.08558"><img src='https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white' alt='arXiv'></a>
+<a href="https://icpr2026.org/" target="_blank"><img src="https://img.shields.io/badge/ICPR-2026-blue.svg" alt="ICPR 2026"></a>
 
 ## Get Start
 ### Environment setup
@@ -97,10 +98,10 @@ Our code base is inspired by [PoinTr](https://github.com/yuxumin/PoinTr).
 ## Citation
 If our work is helpful for your research, please consider citing our publication:
 <pre>
-@article{revnet,
+@inproceedings{ni2026revnet,
   title={REVNET: Rotation-Equivariant Point Cloud Completion via Vector Neuron Anchor Transformer},
   author={Zhifan Ni and Eckehard Steinbach},
-  journal = {arXiv preprint arXiv:2601.08558},
+  booktitle = {International Conference on Pattern Recognition (ICPR)},
   year={2026},
 }
 </pre>
