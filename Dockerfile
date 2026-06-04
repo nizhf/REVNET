@@ -14,5 +14,5 @@ WORKDIR /home/revnet/workspace
 COPY --chown=revnet:revnet . .
 RUN pip3 install --upgrade pip --no-cache-dir && \
     pip3 install -r requirements.txt --no-cache-dir && \
-    TORCH_CUDA_ARCH_LIST="6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0;10.0;10.3;11.0;12.0;12.1+PTX" pip3 install --no-build-isolation ./extensions/chamfer3D ./extensions/PyTorchEMD ./extensions/pointnet2_ops_lib --no-cache-dir
+    TORCH_CUDA_ARCH_LIST="6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0;10.0+PTX" pip3 install --no-build-isolation ./extensions/chamfer3D ./extensions/PyTorchEMD ./extensions/pointnet2_ops_lib --no-cache-dir
 USER revnet
