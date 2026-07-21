@@ -31,9 +31,11 @@ docker run --rm -it --gpus all -v /path/to/KITTI:/home/revnet/workspace/data/KIT
 ### MVP
 Following [VRCNet](https://github.com/paul007pl/VRCNet), download all h5 files from [here](https://drive.google.com/drive/folders/1ylC-dYFM45KW4K9tPyljBSVyetazCEeH) and put them in data/MVP/.
 ### PCN Car
-Following **PCN Dataset** section of [PoinTr repository](https://github.com/yuxumin/PoinTr/blob/master/DATASET.md) to download and unzip the file into data/PCN/. If those links are unavailable, we share them [here](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ). Checksum SHA256: 3e2d6df7d5bbf2c556005f2040b9f57d525942890a8eded62d387b6bd0c7b8c3.  
+Following **PCN Dataset** section of [PoinTr repository](https://github.com/yuxumin/PoinTr/blob/master/DATASET.md) to download and unzip the file into data/PCN/. If those links are unavailable, we share them on [Google Drive](https://drive.google.com/file/d/1RJBf-a2xN00zTLuXRsdRBYETAglEcAak/view?usp=sharing) and [OneDrive](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ).  
+Checksum SHA256: 3e2d6df7d5bbf2c556005f2040b9f57d525942890a8eded62d387b6bd0c7b8c3.  
 ### KITTI
-The download link from **KITTI** section of [PoinTr repository](https://github.com/yuxumin/PoinTr/blob/master/DATASET.md) is no longer valid. We share them [here](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ). If this violates your rights, please contact us to delete them. Checksum SHA256: 4c213289e772f7a239d700351963ee20e62ff82fc92fd585e597a9c7949e57fe.
+The download link from **KITTI** section of [PoinTr repository](https://github.com/yuxumin/PoinTr/blob/master/DATASET.md) is no longer valid. We share them on [Google Drive](https://drive.google.com/file/d/1JZhuBY2TH_lpm11UwE15pbPd7FaMXIFH/view?usp=sharing) and [OneDrive](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ). If this violates your rights, please contact us to delete them.  
+Checksum SHA256: 4c213289e772f7a239d700351963ee20e62ff82fc92fd585e597a9c7949e57fe.
 ### File Structure
 The structure of this workspace should be like:
 <pre>
@@ -65,7 +67,7 @@ The structure of this workspace should be like:
 </pre>
 
 ## Evaluation with Pretrained Weights
-You can download our pretrained weights [here](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ) and put them in ./experiments/runs
+You can download our pretrained weights from [OneDrive](https://tumde-my.sharepoint.com/:f:/g/personal/zhifan_ni_tum_de/IgAts7x7FVflQ7p7QZdPHtASAQJ27dB32oExfJ1E3SbbmkQ) and put them in ./experiments/runs
 ### On MVP Dataset
 ```
 python eval.py --exp_name revnet_mvp --ckpt best_cd_p.pth --save_path ./experiments
